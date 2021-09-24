@@ -10,6 +10,11 @@ const AppReducer = (state, action) => {
         ...state,
         identity: action.payload,
       };
+    case "SET_CONNECT_ONLY_WITH_AUDIO":
+      return {
+        ...state,
+        connectOnlyWithAudio: action.payload,
+      };
     default:
       return state;
   }

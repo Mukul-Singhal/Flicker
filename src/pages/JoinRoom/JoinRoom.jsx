@@ -4,10 +4,16 @@ import { useLocation } from "react-router";
 
 import { GlobalContext } from "../../contexts/GlobalState";
 
+import JoinRoomTitle from "../../components/JoinRoomTitle/JoinRoomTitle";
+import JoinRoomContent from "../../components/JoinRoomContent/JoinRoomContent";
+
+import "./JoinRoom.styles.css";
+
 function JoinRoom() {
-  const { setIsRoomHost } = useContext(GlobalContext);
+  const { setIsRoomHost, isRoomHost } = useContext(GlobalContext);
 
   const search = useLocation().search;
+  console.log(search);
   useEffect(() => {
     const isRoomHost = new URLSearchParams(search).get("host");
 
@@ -16,7 +22,14 @@ function JoinRoom() {
     }
   }, []);
 
-  return <div>Join Room</div>;
+  return (
+    <div className="join_room_page_container">
+      <div className="join_room_page_panel">
+        <JoinRoomTitle isRoomHost={isRoomHost} />
+        <JoinRoomContent />
+      </div>
+    </div>
+  );
 }
 
 export default JoinRoom;

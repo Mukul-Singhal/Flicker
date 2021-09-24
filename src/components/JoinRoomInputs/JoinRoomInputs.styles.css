@@ -1,0 +1,21 @@
+.join_room_inputs_container {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.join_room_input {
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  width: 300px;
+  height: 40px;
+  padding: 0px 15px;
+}
+
+.join_room_input:focus {
+  border: 1px solid blue;
+}
