@@ -1,0 +1,4 @@
+.connecting_buttons_container {
+  display: flex;
+  flex-direction: column;
+}
