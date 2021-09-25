@@ -28,16 +28,6 @@
   margin-top: 10px;
 }
 
-.room_not_found_container {
-  display: flex;
-  height: 50px;
-  margin-left: 35px;
-}
-
-.room_not_found_paragraph {
-  color: red;
-}
-
 .loading_overlay_container {
   position: absolute;
   display: flex;

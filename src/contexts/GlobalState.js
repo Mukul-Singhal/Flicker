@@ -5,6 +5,7 @@ const initialState = {
   identity: "",
   isRoomHost: "",
   connectOnlyWithAudio: false,
+  roomId: null,
 };
 export const GlobalContext = createContext(initialState);
 
@@ -26,6 +27,9 @@ export const GlobalProvider = ({ children }) => {
   const setConnectOnlyWithAudio = (onlyWithAudio) => {
     dispatch({ type: "SET_CONNECT_ONLY_WITH_AUDIO", payload: onlyWithAudio });
   };
+  const setRoomId = (roomId) => {
+    dispatch({ type: "SET_ROOM_ID", payload: roomId });
+  };
 
   return (
     <GlobalContext.Provider
@@ -33,9 +37,11 @@ export const GlobalProvider = ({ children }) => {
         identity: state.identity,
         isRoomHost: state.isRoomHost,
         connectOnlyWithAudio: state.connectOnlyWithAudio,
+        roomId: state.roomId,
         setIdentity,
         setIsRoomHost,
         setConnectOnlyWithAudio,
+        setRoomId,
       }}
     >
       {children}

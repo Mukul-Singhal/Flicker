@@ -17,7 +17,7 @@ function JoinRoomInputs({
   };
   return (
     <div className="join_room_inputs_container">
-      {isRoomHost && (
+      {!isRoomHost && (
         <input
           className="join_room_input"
           placeholder="Enter Meeting Id"

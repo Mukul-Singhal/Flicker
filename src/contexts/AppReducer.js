@@ -15,6 +15,11 @@ const AppReducer = (state, action) => {
         ...state,
         connectOnlyWithAudio: action.payload,
       };
+    case "SET_ROOM_ID":
+      return {
+        ...state,
+        roomId: action.payload,
+      };
     default:
       return state;
   }
