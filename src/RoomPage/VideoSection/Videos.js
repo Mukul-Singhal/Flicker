@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { connectToRoom } from "../../utils/twilioUtils";
+import { connectToRoom } from "../../utils/twilioutils";
 import RoomLabel from "./RoomLabel";
 import TwilioRoom from "./TwilioRoom/TwilioRoom";
 

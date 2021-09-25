@@ -11,7 +11,7 @@ import RoomNotFoundMessage from "./RoomNotFoundMessage";
 import JoinRoomButtons from "./JoinRoomButtons";
 import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { checkIfRoomExists } from "../utils/twilioUtils";
+import { checkIfRoomExists } from "../utils/twilioutils";
 
 const JoinRoomContent = (props) => {
   const {

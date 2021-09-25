@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AudioTrack from "./AudioTrack";
 import VideoTrack from "./VideoTrack";
 
-import { addMessageToMessenger } from "../../../utils/twilioUtils";
+import { addMessageToMessenger } from "../../../utils/twilioutils";
 
 class Participant extends Component {
   constructor(props) {

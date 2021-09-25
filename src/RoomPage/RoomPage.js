@@ -4,7 +4,7 @@ import VideoSection from "./VideoSection/VideoSection";
 import ChatSection from "./ChatSection/ChatSection";
 import { connect } from "react-redux";
 import { setTwilioAccessToken } from "../store/actions";
-import { getTokenFromTwilio } from "../utils/twilioUtils";
+import { getTokenFromTwilio } from "../utils/twilioutils";
 import Overlay from "./Overlay";
 
 import { useHistory } from "react-router-dom";
