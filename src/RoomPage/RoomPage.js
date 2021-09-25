@@ -7,13 +7,21 @@ import { setTwilioAccessToken } from "../store/actions";
 import { getTokenFromTwilio } from "../utils/twilioUtils";
 import Overlay from "./Overlay";
 
+import { useHistory } from "react-router-dom";
+
 import "./RoomPage.css";
 
 const RoomPage = (props) => {
-  const { identity, setTwilioAccessTokenAction, showOverlay } = props;
+  const { identity, roomId, setTwilioAccessTokenAction, showOverlay } = props;
+
+  const history = useHistory();
 
   useEffect(() => {
-    getTokenFromTwilio(setTwilioAccessTokenAction, identity);
+    if (!identity || !roomId) {
+      history.push("/");
+    } else {
+      getTokenFromTwilio(setTwilioAccessTokenAction, identity);
+    }
   }, []);
 
   return (
