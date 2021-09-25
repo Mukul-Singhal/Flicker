@@ -1,8 +1,13 @@
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { store } from "../store/store";
-import { connect, LocalAudioTrack, LocalVideoTrack } from "twilio-video";
-import { setShowOverlay } from "../store/actions";
+import {
+  connect,
+  LocalAudioTrack,
+  LocalVideoTrack,
+  LocalDataTrack,
+} from "twilio-video";
+import { setShowOverlay, setMessages } from "../store/actions";
 
 const audioConstraints = {
   video: false,
@@ -16,6 +21,8 @@ const videoConstraints = {
     height: 480,
   },
 };
+
+let dataChannel = null;
 
 export const getTokenFromTwilio = async (setAccessToken, identity) => {
   const randomId = uuidv4();
@@ -46,14 +53,15 @@ export const connectToRoom = async (
 
       // create data track for messages
       const audioTrack = new LocalAudioTrack(stream.getAudioTracks()[0]);
-
+      const dataTrack = new LocalDataTrack();
+      dataChannel = dataTrack;
       let videoTrack;
 
       if (!onlyWithAudio) {
         videoTrack = new LocalVideoTrack(stream.getVideoTracks()[0]);
-        tracks = [audioTrack, videoTrack];
+        tracks = [audioTrack, videoTrack, dataTrack];
       } else {
-        tracks = [audioTrack];
+        tracks = [audioTrack, dataTrack];
       }
 
       const room = await connect(accessToken, {
@@ -79,4 +87,33 @@ export const checkIfRoomExists = async (roomId) => {
   );
 
   return response.data.roomExists;
+};
+
+// data channel utils
+
+export const sendMessageUsingDataChannel = (
+  content,
+  messageCreatedByMe = false
+) => {
+  const identity = store.getState().identity;
+
+  const ownMessage = {
+    identity,
+    content,
+    messageCreatedByMe,
+  };
+
+  addMessageToMessenger(ownMessage);
+
+  const MessageToSent = { identity, content };
+
+  const stringifiedMessage = JSON.stringify(MessageToSent);
+
+  dataChannel.send(stringifiedMessage);
+};
+
+export const addMessageToMessenger = (message) => {
+  const messages = [...store.getState().messages];
+  messages.push(message);
+  store.dispatch(setMessages(messages));
 };

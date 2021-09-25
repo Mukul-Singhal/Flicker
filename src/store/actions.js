@@ -6,6 +6,7 @@ const Actions = {
   SET_TWILIO_ACCESS_TOKEN: "SET_TWILIO_ACCESS_TOKEN",
   SET_SHOW_OVERLAY: "SET_SHOW_OVERLAY",
   SET_PARTICIPANTS: "SET_PARTICIPANTS",
+  SET_MESSAGES: "SET_MESSAGES",
 };
 
 export const setIdentity = (identity) => {
@@ -54,6 +55,13 @@ export const setParticipants = (participants) => {
   return {
     type: Actions.SET_PARTICIPANTS,
     participants,
+  };
+};
+
+export const setMessages = (messages) => {
+  return {
+    type: Actions.SET_MESSAGES,
+    messages,
   };
 };
 
