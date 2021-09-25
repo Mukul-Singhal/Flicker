@@ -1,12 +1,7 @@
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { store } from "../store/store";
-import {
-  connect,
-  LocalAudioTrack,
-  LocalDataTrack,
-  LocalVideoTrack,
-} from "twilio-video";
+import { connect, LocalAudioTrack, LocalVideoTrack } from "twilio-video";
 import { setShowOverlay } from "../store/actions";
 
 const audioConstraints = {
