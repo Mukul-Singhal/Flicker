@@ -1,9 +1,0 @@
-.room_not_found_container {
-  display: flex;
-  height: 50px;
-  margin-left: 35px;
-}
-
-.room_not_found_paragraph {
-  color: red;
-}

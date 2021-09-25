@@ -2,14 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { GlobalProvider } from "./contexts/GlobalState";
+import { store } from "./store/store";
+import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalProvider>
+    <Provider store={store}>
       <App />
-    </GlobalProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
