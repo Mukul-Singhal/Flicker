@@ -9,9 +9,11 @@ import JoinRoomButtons from "../JoinRoomButtons/JoinRoomButtons";
 
 import { useHistory } from "react-router-dom";
 
+import { checkIfRoomExists } from "../../utils/twilioutils";
+
 import { v4 as uuidv4 } from "uuid";
 
-function JoinRoomContent() {
+function JoinRoomContent({ setShowLoading }) {
   const [roomIdValue, setRoomIdValue] = useState("");
   const [nameValue, setNameValue] = useState("");
   const [showRoomNotFoundMessage, setShowRoomNotFoundMessage] = useState(false);
@@ -26,9 +28,19 @@ function JoinRoomContent() {
 
   const history = useHistory();
 
-  const handleJoinToRoom = () => {
+  const handleJoinToRoom = async () => {
     setIdentity(nameValue);
     if (!isRoomHost) {
+      setShowLoading(true);
+      const roomExists = await checkIfRoomExists(roomIdValue);
+      setShowLoading(false);
+      console.log("roomExists", roomExists);
+      if (roomExists) {
+        setRoomId(roomIdValue);
+        history.push("/room");
+      } else {
+        setShowRoomNotFoundMessage(true);
+      }
     } else {
       setRoomId(uuidv4());
       history.push("/room");
