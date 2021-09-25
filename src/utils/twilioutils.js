@@ -26,7 +26,7 @@ export const getTokenFromTwilio = async (setAccessToken, identity) => {
   const randomId = uuidv4();
 
   const response = await axios.get(
-    `http://localhost:5001/api/token-service?identity=${randomId}${identity}`
+    `https://flicker-backend.herokuapp.com/api/token-service?identity=${randomId}${identity}`
   );
 
   const data = response.data;
@@ -80,7 +80,7 @@ export const connectToRoom = async (
 
 export const checkIfRoomExists = async (roomId) => {
   const response = await axios.get(
-    `http://localhost:5001/api/room-exists?roomId=${roomId}`
+    `https://flicker-backend.herokuapp.com/api/room-exists?roomId=${roomId}`
   );
 
   return response.data.roomExists;
